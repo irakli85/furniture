@@ -6,6 +6,7 @@ import { useState } from 'react'
 function App() {
   const [oneDMTR, setoneDMTR] = useState(100)
   const [oneLength, setOneLength] = useState(null)
+  const [oneCoast, setOneCoast] = useState(1)
 
 
   const truba_kr = (oneLength*oneDMTR*Math.PI/1000).toFixed(2);
@@ -27,10 +28,15 @@ function App() {
         </select>
       </div>
       <div className='input_item'>
-        <label htmlFor="">სიგრძე l, m</label>
+        <label>სიგრძე l, m</label>
         <input type="number" value={oneLength == 0 ? "" : oneLength} onChange={(e) => setOneLength(+e.target.value)}/>
       </div>
-      <p>ფართობი {truba_kr}</p>
+      <p>ფართობი {truba_kr} m<sup>2</sup></p>
+      <div className='input_item'>
+        <label >ერთეულის ღირებულება</label>
+        <input type="number" value={oneCoast == 1 || oneCoast == 0 ? "" : oneCoast} onChange={(e) => setOneCoast(+e.target.value)}/>        
+      </div>
+      <p>ღირებულება ჯამში {(truba_kr * oneCoast).toFixed(2)}</p>
 
      </div>
     </Container>
